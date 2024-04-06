@@ -3,8 +3,9 @@
 
 require 'telegram/bot'
 
-require './lib/message_responder'
 require './lib/app_configurator'
+require './lib/chat_join_request'
+require './lib/message_responder'
 
 config = AppConfigurator.new
 config.configure
@@ -15,10 +16,20 @@ logger = config.logger
 logger.debug 'Starting telegram bot'
 
 Telegram::Bot::Client.run(token) do |bot|
-  bot.listen do |message|
-    options = { bot: bot, message: message }
+  bot.listen do |event|
+    case event
+    when Telegram::Bot::Types::ChatMemberUpdated
+      options = { bot: bot, chat: event.chat, logger: logger, user: event.from }
 
-    logger.debug "@#{message.from.username}: #{message.text}"
-    MessageResponder.new(options).respond
+      logger.debug "@#{event.from.username} invited us to #{event.chat.title}"
+      ChatJoinRequest.new(options).respond
+    when Telegram::Bot::Types::Message
+      options = { bot: bot, message: event }
+
+      logger.debug "@#{event.from.username}: #{event.text}"
+      MessageResponder.new(options).respond
+    else
+      raise ArgumentError("Unsupported event: #{event}")
+    end
   end
 end
