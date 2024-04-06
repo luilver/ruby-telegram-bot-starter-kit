@@ -22,6 +22,11 @@ class MessageResponder
       return
     end
 
+    on /^\/http/ do |link|
+      answer_with_tldr(link)
+      return
+    end
+
     on /^\/start/ do
       answer_with_greeting_message
     end
@@ -65,6 +70,11 @@ class MessageResponder
 
   def answer_with_message(text)
     MessageSender.new(bot: bot, chat: message.chat, text: text).send
+  end
+
+  def answer_with_tldr(link)
+    response = chatgpt.tldr(message)
+    answer_with_message(response['choices'][0]['message']['content'])
   end
 
   def talk_to_chatgpt(message)
