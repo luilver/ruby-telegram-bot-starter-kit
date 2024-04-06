@@ -23,7 +23,7 @@ class ChatJoinRequest
     begin
       bot.api.approve_chat_join_request(chat_id: chat.id, user_id: user.id)
     rescue Telegram::Bot::Exceptions::ResponseError => e
-      logger.debug "error: `@#{e.message.username}` occurred"
+      logger.debug "error: `@#{e.message}` occurred"
     end
   end
 end
