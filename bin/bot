@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require 'telegram/bot'
 
@@ -8,16 +9,16 @@ require './lib/app_configurator'
 config = AppConfigurator.new
 config.configure
 
-token = config.get_token
-logger = config.get_logger
+token = config.token
+logger = config.logger
 
 logger.debug 'Starting telegram bot'
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
-    options = {bot: bot, message: message}
+    options = { bot: bot, message: message }
 
-    logger.debug "@#{message.from.username}: #{message.text}" 
+    logger.debug "@#{message.from.username}: #{message.text}"
     MessageResponder.new(options).respond
   end
 end

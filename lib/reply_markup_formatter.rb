@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Formatter for Reply Markup
 class ReplyMarkupFormatter
   attr_reader :array
 
@@ -5,7 +8,7 @@ class ReplyMarkupFormatter
     @array = array
   end
 
-  def get_markup
+  def markup
     Telegram::Bot::Types::ReplyKeyboardMarkup
       .new(keyboard: array.each_slice(1).to_a, one_time_keyboard: true)
   end

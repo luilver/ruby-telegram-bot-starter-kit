@@ -1,19 +1,18 @@
+# frozen_string_literal: true
+
 require './lib/reply_markup_formatter'
 require './lib/app_configurator'
 
+# Sender for Messages
 class MessageSender
-  attr_reader :bot
-  attr_reader :text
-  attr_reader :chat
-  attr_reader :answers
-  attr_reader :logger
+  attr_reader :bot, :text, :chat, :answers, :logger
 
   def initialize(options)
     @bot = options[:bot]
     @text = options[:text]
     @chat = options[:chat]
     @answers = options[:answers]
-    @logger = AppConfigurator.new.get_logger
+    @logger = AppConfigurator.new.logger
   end
 
   def send
@@ -29,8 +28,8 @@ class MessageSender
   private
 
   def reply_markup
-    if answers
-      ReplyMarkupFormatter.new(answers).get_markup
-    end
+    return unless answers
+
+    ReplyMarkupFormatter.new(answers).markup
   end
 end
