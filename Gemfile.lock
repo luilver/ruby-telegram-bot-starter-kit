@@ -41,6 +41,7 @@ GEM
       dry-inflector (~> 1.0)
       dry-logic (~> 1.4)
       zeitwerk (~> 2.6)
+    event_stream_parser (1.0.0)
     faraday (2.8.1)
       base64
       faraday-net_http (>= 2.0, < 3.1)
@@ -48,6 +49,7 @@ GEM
     faraday-multipart (1.0.4)
       multipart-post (~> 2)
     faraday-net_http (3.0.2)
+    fileutils (1.7.2)
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -56,6 +58,10 @@ GEM
     mutex_m (0.2.0)
     pg (1.5.6)
     rake (13.2.0)
+    ruby-openai (6.5.0)
+      event_stream_parser (>= 0.3.0, < 2.0.0)
+      faraday (>= 1)
+      faraday-multipart (>= 1)
     ruby2_keywords (0.0.5)
     telegram-bot-ruby (2.0.0)
       dry-struct (~> 1.6)
@@ -72,10 +78,12 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  fileutils
   i18n
   pg
   rake
+  ruby-openai
   telegram-bot-ruby
 
 BUNDLED WITH
-   2.1.4
+   2.5.7
