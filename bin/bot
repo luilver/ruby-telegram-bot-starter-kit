@@ -7,6 +7,7 @@ require 'telegram/bot'
 require './lib/app_configurator'
 require './lib/chat_join_request'
 require './lib/message_responder'
+require './lib/version'
 
 config = AppConfigurator.new
 config.configure
@@ -14,7 +15,7 @@ config.configure
 token = config.token
 logger = config.logger
 
-logger.debug 'Starting telegram bot'
+logger.debug "Starting Juana, version #{::Juana::VERSION}"
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |event|

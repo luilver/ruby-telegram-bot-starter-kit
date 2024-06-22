@@ -6,9 +6,12 @@ The format is based on [Keep a Changelog][], and this project adheres to
 
 ## [Unreleased]
 ### Add
-- [ ] Que los mensajes de respuesta se creen como respuesta al mensaje que
-los origina, para tener contexto.
 - [ ] Que resuma todos los artículos.
+
+## [Version 0.0.2]
+### Add
+- [x] Que los mensajes de respuesta se creen como respuesta al mensaje que
+los origina, para tener contexto.
 
 ## [Version 0.0.1]
 ### Add
