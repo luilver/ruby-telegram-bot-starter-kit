@@ -1,13 +1,36 @@
 en:
+  error_message_tldr: "Oh, looks like you're missing a link. Example: /tldr https://www.informin.com/vale's_a_grumpy_old_man?jorge=freaky"
   farewell_message: "Bye! I'll miss you :("
   greeting_message: "OpenAI is awesome! You may ask anything to me (:"
   help_message : |
-    Welcome to OpenAI Bot!
+    My name is Juana, I'm a bot who «baila como Juana la cubana»
 
-    This bot allows you to interact with OpenAI's GPT-3 model through a chat interface. Here are the available commands you can use:
-    1. /start - This command starts the bot and allows you to begin chatting with the GPT-3 model. Simply type your message after using this command to start the conversation.
-    2. /stop - This command stops the bot and ends the current conversation with the GPT-3 model. Use this command when you want to stop chatting and exit the bot.
-    3. /help - This command provides you with information about the available commands and how to use the bot. If you ever need assistance or have questions about the bot, use this command to get help.
+    I allow you to interact with OpenAI's GPT-4 model through a chat interface.
 
-    To use the bot, simply type one of the available commands, then type your message to interact with the GPT-3 model. Feel free to start a conversation, ask questions, or engage in any type of dialogue you'd like!
-    If you have any further questions or need additional assistance, please don't hesitate to reach out by using the /help command. Enjoy chatting with OpenAI Bot!
+    Here are the available commands you can use:
+    1. /ask «what's your truly desired?» - To ask ChatGPT something.
+    2. /help - Use this command to get help.
+    3. /tldr «your link here» - Provide a brief summary of given link.
+
+    To see me dance, simply type one of the available commands, with its arguments and press enter.
+    Feel free to start a conversation, ask questions, or engage in any type of dialogue you'd like!
+    If you have any further questions or need additional assistance, please don't hesitate to reach out to Lu, my creator.
+    Enjoy chatting with me!
+es:
+  error_message_tldr: "Oh, parece que has olvidado el enlace. Ejemplo: /tldr https://www.informín.es/moya_es_un_gigante?july=dictador"
+  farewell_message: "Adiós! Nos vemos pronto ;)"
+  greeting_message: "Juana es lo máximo! Puedes preguntarme lo que quieras (:"
+  help_message : |
+     Mi nombre es Juana, soy un bot que «baila como Juana la cubana»
+
+     Te permito interactuar con el modelo GPT-4 de OpenAI a través de una interfaz de chat.
+
+     Estos son los comandos disponibles que puedes usar:
+     1. /ask «¿cuál es tu verdadero deseo?» - Para preguntarle algo a ChatGPT.
+     2. /help: utilice este comando para obtener ayuda.
+     3. /tldr «inserta tu enlace aquí»: proporciona un breve resumen del enlace dado.
+
+     Para verme bailar, simplemente escribe uno de los comandos disponibles, con sus argumentos y presiona enter.
+     ¡Siéntete libre de iniciar una conversación, hacer preguntas o participar en cualquier tipo de diálogo que desees!
+     Si tiene más preguntas o necesita ayuda adicional, no dude en comunicarse con Lu, mi creador.
+     ¡Disfruta charlando conmigo!
