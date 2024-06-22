@@ -20,14 +20,15 @@ Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |event|
     case event
     when Telegram::Bot::Types::ChatMemberUpdated
-      options = { bot: bot, chat: event.chat, logger: logger, user: event.from }
+      options = { bot:, chat: event.chat, logger:, user: event.from }
 
       logger.debug "@#{event.from.username} invited us to #{event.chat.title}"
       ChatJoinRequest.new(options).respond
     when Telegram::Bot::Types::Message
-      options = { bot: bot, message: event }
+      options = { bot:, event: }
+      location = event.chat.title || 'private'
 
-      logger.debug "@#{event.from.username}: #{event.text}"
+      logger.debug "@#{event.from.username}[#{location}]: #{event.text}"
       MessageResponder.new(options).respond
     else
       raise ArgumentError("Unsupported event: #{event}")
