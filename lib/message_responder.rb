@@ -6,54 +6,52 @@ require './lib/chatgpt_client'
 
 # Responder for Messages
 class MessageResponder
-  attr_reader :message, :bot, :user, :chatgpt
+  attr_reader :event, :bot, :user, :chatgpt
 
   def initialize(options)
+    I18n.locale = :es
+
     @bot = options[:bot]
-    @message = options[:message]
+    @event = options[:event]
 
     @chatgpt = ChatgptClient.new
-    @user = User.find_or_create_by(uid: message.from.id)
+    @user = User.find_or_create_by(uid: event.from.id)
   end
 
   def respond
     on /^\/help/ do
-      answer_with_help_message
-      return
+      return answer_with_help_message
     end
 
-    on /^\/http/ do |link|
-      answer_with_tldr(link)
-      return
+    on /^\/tldr(\.*)/ do |message|
+      return answer_with_error(:tldr) unless message.split[1]
+
+      return answer_with_tldr(message.strip)
     end
 
-    on /^\/start/ do
-      answer_with_greeting_message
-    end
-
-    on /^\/stop/ do
-      answer_with_farewell_message
-    end
-
-    on /(\.*)/ do |message|
-      talk_to_chatgpt(message)
+    on /^\/ask(\.*)/ do |message|
+      talk_to_chatgpt(message.strip)
     end
   end
 
   private
 
   def on(regex, &block)
-    regex =~ message.text
+    regex =~ event.text
     return unless $LAST_MATCH_INFO
 
     case block.arity
     when 0
       yield
     when 1
-      yield message
+      yield event.text
     when 2
       yield ::Regexp.last_match(1), ::Regexp.last_match(2)
     end
+  end
+
+  def answer_with_error(symbol)
+    answer_with_message I18n.t("error_message_#{symbol}")
   end
 
   def answer_with_farewell_message
@@ -69,16 +67,18 @@ class MessageResponder
   end
 
   def answer_with_message(text)
-    MessageSender.new(bot: bot, chat: message.chat, text: text).send
+    MessageSender.new(bot:, chat: event.chat, text:).send
   end
 
   def answer_with_tldr(link)
-    response = chatgpt.tldr(message)
-    answer_with_message(response['choices'][0]['message']['content'])
+    response = chatgpt.tldr(link)
+
+    answer_with_message(response['choices'][0]['message']['content']) if response
   end
 
   def talk_to_chatgpt(message)
     response = chatgpt.response(message)
-    answer_with_message(response['choices'][0]['message']['content'])
+
+    answer_with_message(response['choices'][0]['message']['content']) if response
   end
 end
