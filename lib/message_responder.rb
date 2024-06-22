@@ -6,13 +6,14 @@ require './lib/chatgpt_client'
 
 # Responder for Messages
 class MessageResponder
-  attr_reader :event, :bot, :user, :chatgpt
+  attr_reader :event, :bot, :user, :chatgpt, :message_id
 
   def initialize(options)
     I18n.locale = :es
 
     @bot = options[:bot]
     @event = options[:event]
+    @message_id = event.message_id
 
     @chatgpt = ChatgptClient.new
     @user = User.find_or_create_by(uid: event.from.id)
@@ -67,7 +68,7 @@ class MessageResponder
   end
 
   def answer_with_message(text)
-    MessageSender.new(bot:, chat: event.chat, text:).send
+    MessageSender.new(bot:, chat: event.chat, text:, message_id:).send
   end
 
   def answer_with_tldr(link)

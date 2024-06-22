@@ -1,13 +1,13 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require 'pry'
 require 'telegram/bot'
 
 require './lib/app_configurator'
 require './lib/chat_join_request'
 require './lib/message_responder'
 
-require'pry' 
 config = AppConfigurator.new
 config.configure
 
