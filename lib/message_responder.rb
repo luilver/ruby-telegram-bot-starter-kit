@@ -3,6 +3,7 @@
 require './models/user'
 require './lib/chatgpt_client'
 require './lib/message_sender'
+require './lib/scraper'
 
 # Responder for Messages
 class MessageResponder
@@ -32,6 +33,10 @@ class MessageResponder
 
     on /^\/ask(\.*)/ do |message|
       talk_to_chatgpt(message.strip)
+    end
+
+    on /^\/cibercuba/ do
+      scrape
     end
   end
 
@@ -71,10 +76,23 @@ class MessageResponder
     MessageSender.new(bot:, chat: event.chat, text:, message_id:).send
   end
 
-  def answer_with_tldr(link)
-    response = chatgpt.tldr(link)
+  def answer_with_tldr(message, link = nil)
+    response = chatgpt.tldr(message)
 
-    answer_with_message(response['choices'][0]['message']['content']) if response
+    tldr = response['choices'][0]['message']['content'] if response
+    tldr += "\n\n#{link}" if link
+    answer_with_message(tldr)
+  end
+
+  def build_tme_link(link)
+    "https://t.me/iv?url=#{link}"
+  end
+
+  def scrape
+    feeds = Scraper.run
+    feeds.each do |link|
+      answer_with_tldr("/tldr #{build_tme_link(link)}", link)
+    end
   end
 
   def talk_to_chatgpt(message)
