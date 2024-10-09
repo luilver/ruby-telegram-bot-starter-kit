@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require './models/user'
-require './lib/message_sender'
 require './lib/chatgpt_client'
+require './lib/message_sender'
 
 # Responder for Messages
 class MessageResponder
