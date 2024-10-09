@@ -20,10 +20,8 @@ class ChatJoinRequest
   # parameters: {"migrate_to_chat_id"=>-1002107916201})
   # 3. Telegram error: USER_ALREADY_PARTICIPANT\
   def respond
-    begin
-      bot.api.approve_chat_join_request(chat_id: chat.id, user_id: user.id)
-    rescue Telegram::Bot::Exceptions::ResponseError => e
-      logger.debug "error: `@#{e.message}` occurred"
-    end
+    bot.api.approve_chat_join_request(chat_id: chat.id, user_id: user.id)
+  rescue Telegram::Bot::Exceptions::ResponseError => e
+    logger.debug "error: `@#{e.message}` occurred"
   end
 end

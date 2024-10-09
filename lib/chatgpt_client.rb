@@ -41,7 +41,7 @@ class ChatgptClient
   def tldr(message)
     # validate link
     link = message.split(' ')[1..][0] if BBC_MUNDO_REGEXP =~ message
-    link = message.split(' ')[1..][0].split("=")[1] if CC_REGEXP =~ message
+    link = message.split(' ')[1..][0].split('=')[1] if CC_REGEXP =~ message
     return unless valid_url?(link)
 
     body_separator = BBC_MUNDO_SEPARATOR if BBC_MUNDO_REGEXP =~ link
@@ -73,7 +73,7 @@ class ChatgptClient
   end
 
   def valid_url?(url)
-    url_regex = /\A#{URI::regexp(['http', 'https'])}\z/
+    url_regex = /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
     url_regex.match?(url)
   end
 end

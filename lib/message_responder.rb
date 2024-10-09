@@ -21,21 +21,21 @@ class MessageResponder
   end
 
   def respond
-    on /^\/help/ do
+    on(%r{^/help}) do
       return answer_with_help_message
     end
 
-    on /^\/tldr(\.*)/ do |message|
+    on(%r{^/tldr(\.*)}) do |message|
       return answer_with_error(:tldr) unless message.split[1]
 
       return answer_with_tldr(message.strip)
     end
 
-    on /^\/ask(\.*)/ do |message|
+    on(%r{^/ask(\.*)}) do |message|
       talk_to_chatgpt(message.strip)
     end
 
-    on /^\/cibercuba/ do
+    on(%r{^/cibercuba}) do
       scrape
     end
   end
