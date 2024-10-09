@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog][], and this project adheres to
 ### Add
 - [ ] Que resuma todos los artículos.
 
+## [Version 0.0.3]
+### Add
+- [x] Add scraper to cibercuba feed
+
 ## [Version 0.0.2]
 ### Add
 - [x] Que los mensajes de respuesta se creen como respuesta al mensaje que
