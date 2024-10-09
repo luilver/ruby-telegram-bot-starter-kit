@@ -104,3 +104,10 @@ If you have some proposals how to improve this boilerplate feel free to open iss
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
 5. Create new Pull Request
+
+### Deploying
+
+Once my-new-feature branch is merged into master then:
+1. Bump version
+2. Push
+3. Deploy
