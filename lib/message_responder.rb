@@ -36,7 +36,7 @@ class MessageResponder
     end
 
     on(%r{^/cibercuba}) do
-      scrape
+      scrape_save_and_answer
     end
   end
 
@@ -88,11 +88,17 @@ class MessageResponder
     "https://t.me/iv?url=#{link}"
   end
 
-  def scrape
+  def scrape_save_and_answer
+    valid_records = false
+
     feeds = Scraper.run
     feeds.each do |link|
-      answer_with_tldr("/tldr #{build_tme_link(link)}", link)
+      record = Link.create(url: link)
+      valid_records ||= record.valid?
+      answer_with_tldr("/tldr #{build_tme_link(link)}", link) if record.valid?
     end
+
+    answer_with_message I18n.t('no_new_links') unless valid_records
   end
 
   def talk_to_chatgpt(message)

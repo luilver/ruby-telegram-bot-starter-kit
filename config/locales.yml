@@ -16,6 +16,7 @@ en:
     Feel free to start a conversation, ask questions, or engage in any type of dialogue you'd like!
     If you have any further questions or need additional assistance, please don't hesitate to reach out to Lu, my creator.
     Enjoy chatting with me!
+  no_new_links: "Links received are already shown them all"
 es:
   error_message_tldr: "Oh, parece que has olvidado el enlace. Ejemplo: /tldr https://www.informín.es/moya_es_un_gigante?july=dictador"
   farewell_message: "Adiós! Nos vemos pronto ;)"
@@ -34,3 +35,4 @@ es:
      ¡Siéntete libre de iniciar una conversación, hacer preguntas o participar en cualquier tipo de diálogo que desees!
      Si tiene más preguntas o necesita ayuda adicional, no dude en comunicarse con Lu, mi creador.
      ¡Disfruta charlando conmigo!
+  no_new_links: "Todos los enlaces recibidos ya han sido mostrados"

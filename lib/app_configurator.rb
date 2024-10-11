@@ -11,7 +11,7 @@ class AppConfigurator
   end
 
   def token
-    YAML.safe_load(IO.read('config/secrets.yml'))['telegram_bot_token']
+    YAML.safe_load(IO.read('config/secrets.yml'), aliases: true)['telegram_bot_token']
   end
 
   def logger

@@ -4,6 +4,7 @@
 require 'pry'
 require 'telegram/bot'
 
+require './config/environment'
 require './lib/app_configurator'
 require './lib/chat_join_request'
 require './lib/message_responder'
