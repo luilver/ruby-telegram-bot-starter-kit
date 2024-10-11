@@ -111,3 +111,12 @@ Once my-new-feature branch is merged into master then:
 1. Bump version
 2. Push
 3. Deploy
+
+## Running
+
+1. `bundle`
+2. `./bin/setup`
+3. Edit `config/secret.yml` file and place your telagram token and chatgpt api
+    key
+4. `rake db:prepare`
+5. `./bin/bot`
