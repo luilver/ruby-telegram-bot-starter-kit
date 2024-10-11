@@ -4,7 +4,11 @@
 
 require 'fileutils'
 
+# path to your application root.
 APP_ROOT = File.expand_path('..', __dir__) # path to your application root.
+
+# database file
+db_file = 'config/database.yml'
 
 def system!(*args)
   system(*args, exception: true)
@@ -16,12 +20,12 @@ FileUtils.chdir APP_ROOT do
   system('bundle check') || system!('bundle install')
 
   puts '\n== Copying sample files =='
-  FileUtils.cp 'config/database.yml.sample', 'config/database.yml' unless File.exist?('config/database.yml')
+  FileUtils.cp 'config/database.yml.sample', db_file unless File.exist?(db_file)
   FileUtils.cp 'config/locales.yml.sample', 'config/locales.yml' unless File.exist?('config/locales.yml')
   FileUtils.cp 'config/secrets.yml.sample', 'config/secrets.yml' unless File.exist?('config/secrets.yml')
 
   puts '\n== Preparing database =='
-  system! 'rake db:create db:migrate'
+  system! 'rake db:prepare'
 
   puts '\n== Removing old logs and tempfiles =='
   system! 'rake log:clear tmp:clear'

@@ -1,3 +1,5 @@
 database.yml
+development.db
 secrets.yml
+test.db
 *.log
