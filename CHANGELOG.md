@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog][], and this project adheres to
 ## [Unreleased]
 ### Add
 - [ ] Que resuma todos los artículos.
+- [ ] Que no repita links (Guardar en DB)
 
 ## [Version 0.0.3]
 ### Add
