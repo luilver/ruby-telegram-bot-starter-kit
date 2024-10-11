@@ -27,4 +27,4 @@ Security/Open:
 Style/Documentation:
   Exclude:
     - 'spec/**/*'
-    - 'db/migrate/001_create_users.rb'
+    - 'db/**/*'
