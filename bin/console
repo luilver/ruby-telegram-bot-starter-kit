@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export BUNDLE_GEMFILE=Gemfile
+
+irb -I lib -r ./config/application.rb
