@@ -30,7 +30,12 @@ rescue Psych::SyntaxError => e
 end
 
 env = ENV['RACK_ENV'] || 'development'
-adapter = config[env][:adapter]
-database = config[env][:database]
-db_options = { adapter:, database: }
+if env == 'production'
+  db_options = config[env]
+else
+  adapter = config[env][:adapter]
+  database = config[env][:database]
+  db_options = { adapter:, database: }
+end
+
 config[:connection] = ActiveRecord::Base.establish_connection(db_options)
