@@ -9,6 +9,11 @@ The format is based on [Keep a Changelog][], and this project adheres to
 - [ ] Que resuma todos los artículos.
 - [ ] Que no repita links (Guardar en DB)
 
+## [Version 0.0.4]
+### Add
+- [x] Add rake tasks suite
+- [x] Add active record model support
+
 ## [Version 0.0.3]
 ### Add
 - [x] Add scraper to cibercuba feed
